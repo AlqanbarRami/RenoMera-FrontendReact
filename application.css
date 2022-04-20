@@ -1,0 +1,266 @@
+body{
+    margin: 0;
+    padding: 0;
+  }
+  .header{
+    display: flex;
+    flex-direction: row;
+    display: flex;
+    flex-direction: row;   
+    background-color: #0093E9;
+    background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 10px;
+    color: white;
+
+  }
+
+  .nav {
+    margin: 0;
+    padding: 0%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 95%;
+   
+  }
+
+  
+  
+  ul.nav li  {
+    display: flex;
+    color: black;
+    text-align: center;
+    padding: 20px;
+    text-decoration: none;
+    cursor: pointer;
+    color: white;
+  }
+
+  
+  .right {
+    display: flex;
+    justify-self: start;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  .right:hover,
+  .nav li:hover{
+    border: 1px solid white;
+    padding: 20px;
+    border-radius: 50%;
+    transform: scale(1.1);
+  }
+  .footer {
+      position: fixed;
+      bottom: 0;
+      padding: 20px;
+      width: 100%;
+      background-color: #0093E9;
+      background-image: linear-gradient(19deg, #0093E9 0%, #B721FF 100%);
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      color: white;
+      text-align: center;
+    }
+
+    
+.container,
+.about-container,
+.contact-container,
+.customer-container,
+.construction-container,
+.supplier-container,
+.login-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    flex-wrap: wrap;
+    padding: 0%;
+    margin: 0%;
+    
+}
+
+.sub-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin-top: 150px;
+    width: auto;
+    height: 100%;
+    padding: 0px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    transition:left 0.4;
+}
+
+.choose,
+.login-now{
+    display: flex;
+    background-image: linear-gradient( 109.6deg,  rgba(61,245,167,1) 11.2%, rgba(9,111,224,1) 91.1% );;
+    justify-content: center;
+    padding: 10px 0px 10px 0px;
+    border-radius: 10px 10px 0px 0px;
+    width: 100%;
+    color: white;
+}
+
+.content,
+.form,
+.login-input{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 50px;
+}
+
+.about-info,
+.contact-info,
+.customer-page,
+.construction-page,
+.supplier-page{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 50px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 25px;
+    margin-top: 100px;
+    transition: all 0.9s;
+}
+
+.about-info:hover,
+.contact-info:hover,
+.customer-page:hover,
+.construction-page:hover,
+.supplier-page:hover{
+    transform: scale(1.2);
+    background-color:lightblue;
+}
+
+.content span{
+    margin: 5px;
+    flex-wrap: wrap;
+    background-color: #00DBDE;
+    padding: 20px;
+    border-radius: 10%;
+    cursor: pointer;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    transition: background-color 0.3s;
+
+}
+.register-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    flex-wrap: wrap;
+    padding: 0%;
+    margin: 0%;
+}
+
+.register-div,
+.login-sub-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin-top: 150px;
+    width: 30%;
+    height: 100%;
+    padding: 0px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    transition: all 0.7s;
+
+}
+
+.login-sub-container:hover,
+.register-div:hover{
+    transform: scale(1.2);
+    background-color:aquamarine;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 50px;
+}
+
+.username,
+.password,
+.submit-button-div{
+    margin: 10px;
+}
+.username input,
+.password input,
+.login-input input{
+    padding: 5px 10px 5px 10px;
+}
+
+.submit-button-div button,
+.login-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    padding: 15px 40px 15px 40px;
+    background-color:beige;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: cornflowerblue;
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+
+
+.submit-button-div button:hover,
+.login-button:hover{
+    transform: scale(1.1);
+    background-color: white;
+    color: black;
+}
+
+.content span:hover{
+    transform: scale(1.1);
+    background-color: white;
+    color: black;
+}
+
+.login-input{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 50px;
+}
+
+.login-input input{
+margin: 10px;
+}
+
+input{
+    outline: none;
+    border: none;
+}
