@@ -1,9 +1,8 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
 import { Footer } from "./footer.js"
-import './header-footer.css';
 import { Header } from "./header.js";
-import './Main.css'
+import './application.css'
 
 
 
