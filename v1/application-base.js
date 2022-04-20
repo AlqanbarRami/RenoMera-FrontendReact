@@ -1,9 +1,9 @@
-import { navBar } from './Header/nav-bar.js';
-import {Footer} from './Footer/footer.js'
-import './node_modules/jquery/dist/jquery.js';
-import { Plan } from './Main/plan.js';
-import { Contact } from './Main/contact.js';
-import { Prototype } from './Main/prototype.js';
+import { navBar } from '../v1/Header/nav-bar.js';
+import {Footer} from '../v1/Footer/footer.js'
+import 'jquery';
+import { Plan } from '../v1/Main/plan.js';
+import { Contact } from '../v1/Main/contact.js';
+import { Prototype } from '../v1//Main/prototype.js';
 
 
 
@@ -53,4 +53,5 @@ export class ApplicationBase {
         this.nav.appendToElement('header');
         this.footer.appendToElement('footer');
     }
+    
 }

@@ -1,13 +1,14 @@
 
-import {Plan} from './Main/plan.js'
-import {Prototype} from './Main/prototype.js'
-import {Contact} from './Main/contact.js'
+import {Plan} from '../v1/Main/plan.js'
+import {Prototype} from '../v1/Main/prototype.js'
+import {Contact} from '../v1/Main/contact.js'
 import { ApplicationBase } from './application-base.js';
-import './node_modules/jquery/dist/jquery.js';
+import 'jquery';
 
 
 
 export class App extends ApplicationBase{
+    
  constructor(){
      super("Uppgift 1");
      this.addRoute("Affärsplan", new Plan(),true);
@@ -19,8 +20,16 @@ export class App extends ApplicationBase{
 }
 
 
+
+
+
+
 export let application = new App();
 application.AlwaysShow();
+
+
+
+
 
 document.getElementById("Affärsplan").addEventListener("click", function(){
     application.show("plan");
