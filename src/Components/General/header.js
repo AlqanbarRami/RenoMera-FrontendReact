@@ -12,7 +12,7 @@ import { SupplierPage } from "../Supplier/supplierpage.js";
 export class Header extends React.Component {
   constructor(props) {
     super(props)
-    this.user = localStorage.getItem('logged');
+    this.user = sessionStorage.getItem('logged');
     this.state = {
       main: true,
       about: false,
@@ -75,7 +75,7 @@ export class Header extends React.Component {
 }
 
   Logout() {
-    localStorage.clear();
+    sessionStorage.clear();
     window.location.reload();
   }
 

@@ -1,11 +1,10 @@
 import React from "react"
-import { CustomerNewPost } from "./customer-add-post";
+import { CustomerNewPost } from "./customer-add-post.js";
 
 export class CustomerPage extends React.Component{
 
     constructor(props) {
-        super(props);
-       
+        super(props);   
         this.state = {
             customerMain:true,
             askHelp:false,
@@ -59,7 +58,7 @@ export class CustomerPage extends React.Component{
         }
         else if(this.state.askHelp){
             return(
-                <CustomerNewPost/>
+                <CustomerNewPost />
             )
         }
         else if(this.state.buyMaterial){

@@ -1,6 +1,7 @@
+import React from "react";
 import { useState } from "react"
 
-export default function CustomerNewPost(props){
+export function CustomerNewPost(props){
     const[Title,setTitle] = useState('');
     const[Description, setDescription] = useState('');
     const[City, setCity] = useState('');
@@ -24,32 +25,37 @@ export default function CustomerNewPost(props){
         
     }
     return(
-        <div>
+        <div className="post-container">
+        <div className="customer-post-container">
+            <div className="describe-customer">
+                <span>Describe Your Problem</span>
+            </div>
+            <div className="customer-post-contents">
             <form onSubmit={onCreatePost}>
                 <div>
-                    <label>Title: </label>
-                    <input type="text" value={Title}  onChange={(e)=>setTitle(e.target.value)}/>
+                    <input type="text" value={Title}  onChange={(e)=>setTitle(e.target.value)} placeholder="Title"/>
                 </div>
                 <div>
-                    <label>Description: </label>
-                    <input type="text" value={Description}  onChange={(e)=>setDescription(e.target.value)}/>
+                    <input type="text" value={Description}  onChange={(e)=>setDescription(e.target.value)} placeholder="Description"/>
                 </div>
                 <div>
-                    <label>City: </label>
-                    <input type="text" value={City}  onChange={(e)=>setCity(e.target.value)}/>
+                    <input type="text" value={City}  onChange={(e)=>setCity(e.target.value)} placeholder="City" />
                 </div>
                 <div>
-                    <label>Image Url: </label>
-                    <input type="text" value={Image}  onChange={(e)=>setImage(e.target.value)}/>
+                    <input type="text" value={Image}  onChange={(e)=>setImage(e.target.value)} placeholder="Image URL"/>
                 </div>
                 <div>
-                    <label>PhoneNumber: </label>
-                    <input type="text" value={PhoneNumber}  onChange={(e)=>setPhoneNumber(e.target.value)}/>
+                    <input type="text" value={PhoneNumber}  onChange={(e)=>setPhoneNumber(e.target.value)} placeholder="Phone Number"/>
                 </div>
                 <div>
+                <div className="submit-add-button">
                 <button type="submit">Add</button>
+                </div>
                 </div>
             </form>
         </div>
+        </div>
+        </div>
+
     )
 }

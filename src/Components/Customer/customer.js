@@ -35,8 +35,8 @@ export class Customer extends React.Component{
 
     componentDidMount() {
         this.userInfo = JSON.parse(localStorage.getItem('user'));
-        localStorage.clear();
-        if (localStorage.getItem('user')) {
+        sessionStorage.clear();
+        if (sessionStorage.getItem('user')) {
             this.setState({
                 userName: this.userInfo.userName,
                 userPassword: this.userInfo.userPassword,
@@ -52,7 +52,7 @@ export class Customer extends React.Component{
     }
 
     componentWillUpdate(nextProps, nextState) {
-        localStorage.setItem('user', JSON.stringify(nextState));
+        sessionStorage.setItem('user', JSON.stringify(nextState));
     }
 
     render() {

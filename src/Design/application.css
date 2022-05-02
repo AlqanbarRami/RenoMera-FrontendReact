@@ -74,6 +74,7 @@ body{
 .customer-container,
 .construction-container,
 .supplier-container,
+.post-container,
 .login-container{
     display: flex;
     flex-direction: column;
@@ -93,7 +94,7 @@ body{
     justify-content: center;
     align-items: center;
     align-content: center;
-    margin-top: 150px;
+    margin: 100px 0 150px 0;
     width: auto;
     height: 100%;
     padding: 0px;
@@ -140,6 +141,10 @@ body{
 .customer-page,
 .construction-page,
 .supplier-page{
+display: flex;
+align-items: center;
+justify-content: center;
+flex-wrap: wrap;
 margin-top: 50px;
 width: 50%;
 box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
@@ -150,6 +155,7 @@ height: auto;
 .supplier-welcome{
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     width: 100%;
     align-items: center;
     justify-content: center;
@@ -157,7 +163,76 @@ height: auto;
     padding: 10px 0 10px 0;
 
 }
+.customer-post-container,
+.construction-post-container,
+.supplier-post-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 50%;
+    margin: 100px 0 100px 0;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
 
+.describe-customer,
+.describe-construction,
+.describe-supplier{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 10px 0 10px 0;
+    background-color: #0093E9;
+}
+
+.customer-post-contents,
+.construction-post-contents,
+.supplier-post-contents{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.customer-post-contents input,
+.construction-post-contents input,
+.supplier-post-contents input{
+    margin: 10px 0 10px 0;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 10px 0 10px 0;
+}
+
+.submit-add-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 20px 0 20px 0;
+}
+
+.submit-add-button button{
+    padding: 10px 50px 10px 50px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: #B721FF;
+    color: white;
+    border-radius: 10px;
+    transition: all 0.4s; 
+}
+
+.submit-add-button button:hover{
+    background-color:#80D0C7;
+    color: black;
+}
 .customer-contents,
 .construction-contents,
 .supplier-contents{
@@ -165,6 +240,7 @@ height: auto;
     align-items: center;
     justify-content: center;
     flex-direction: row;
+    flex-wrap: wrap;
 
 }
 
@@ -186,6 +262,9 @@ height: auto;
     color: white;
     transform: scale(1.1);
 }
+
+
+
 .about-info:hover,
 .contact-info:hover
 {
@@ -306,4 +385,38 @@ margin: 10px;
 input{
     outline: none;
     border: none;
+}
+
+@media only screen and (max-width: 400px) {
+.customer-post-container,
+.construction-post-container,
+.supplier-post-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    margin: 100px 0 100px 0;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.customer-page,
+.construction-page,
+.supplier-page{
+    width: 90%;
+}
+
+.sub-container{
+    margin-top: 40px;
+}
+}
+
+@media only screen and (max-width: 620px) {
+.register-div{
+ width: 90%;
+}
+.login-sub-container{
+    width: 90%;
+}
+
 }

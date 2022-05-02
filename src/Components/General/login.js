@@ -9,7 +9,7 @@ export class Login extends React.Component {
     constructor(props) {
         super(props);
         this.CheckUser = this.CheckUser.bind(this)
-        this.userInfo = JSON.parse(localStorage.getItem('user'))
+        this.userInfo = JSON.parse(sessionStorage.getItem('user'))
         this.state = {
             construction : false,
             supplier : false,
@@ -40,7 +40,7 @@ export class Login extends React.Component {
     }
 
     refresh() {
-        localStorage.clear();
+        sessionStorage.clear();
         window.location.reload();
       }
 
@@ -51,18 +51,18 @@ export class Login extends React.Component {
         if( (user == this.userInfo.userName) && (pass == this.userInfo.userPassword) ){
             if(this.userInfo.role == "construction"){
                 this.refresh();
-                localStorage.setItem("logged","construction")
+                sessionStorage.setItem("logged","construction")
                 this.showConstruction();
             }
             else if(this.userInfo.role == "supplier"){
                 this.refresh();
-                localStorage.setItem("logged","supplier")
+                sessionStorage.setItem("logged","supplier")
                 this.showSupplier();
 
             }
             else if(this.userInfo.role == "customer"){
                 this.refresh();
-                localStorage.setItem("logged","customer")
+                sessionStorage.setItem("logged","customer")
                 this.showCustomer();
 
             }
