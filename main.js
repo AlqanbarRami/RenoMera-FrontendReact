@@ -1,7 +1,7 @@
 import React from "react"
-import { Customer } from '../../customer.js'
-import { Construction } from '../../../construction.js'
-import { Supplier } from '../../supplier.js'
+import { Customer } from './customer.js'
+import { Construction } from './construction.js'
+import { Supplier } from './supplier.js'
 
 
 

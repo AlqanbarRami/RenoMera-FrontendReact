@@ -1,7 +1,7 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
-import { Footer } from "./Components/General/footer.js"
-import { Header } from "./Components/General/header.js";
+import { Footer } from "./footer.js"
+import { Header } from "./header.js";
 
 
 

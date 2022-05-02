@@ -1,9 +1,10 @@
 
 import React from "react"
-import {Login}   from '../General/login.js'
+import {Login}   from './login.js'
 
-export class Customer extends React.Component{
+export class Construction  extends React.Component{
     userInfo;
+
     constructor(props) {
         super(props);
         this.eventuserName = this.eventuserName.bind(this);
@@ -12,7 +13,7 @@ export class Customer extends React.Component{
         this.state = {
             userName: '',
             userPassword: '',
-            role : 'customer',
+            role : 'construction',
             comp : true
         }
     }
@@ -46,7 +47,7 @@ export class Customer extends React.Component{
             this.setState({
                 userName: '',
                 userPassword: '',
-                role: 'customer'
+                role: 'construction'
             })
         }
     }
@@ -59,23 +60,23 @@ export class Customer extends React.Component{
         {if(this.state.comp){
         return (
             <div className="register-container">
-                     <div className="register-div">
-                     <div className="choose">
-                    <span>Register new customer</span>
-                     </div>
-                        <form className="form" onSubmit={this.onFormSubmit}>
-                            <div className="username">
-                                <input type="text" placeholder="Username" value={this.state.userName} onChange={this.eventuserName} />
-                            </div>
-                            <div className="password">
-                                <input type="password" placeholder="Password" value={this.state.userPassword} onChange={this.eventPassword} />
-                            </div>
-                            <div className="submit-button-div">
-                                <button type="submit" className="submit-button">Register</button>
-                            </div>
-                        </form>
-                  </div>
+            <div className="register-div">
+            <div className="choose">
+           <span>Register a new construction company</span>
             </div>
+               <form className="form" onSubmit={this.onFormSubmit}>
+                   <div className="username">
+                       <input type="text" placeholder="Username" value={this.state.userName} onChange={this.eventuserName} />
+                   </div>
+                   <div className="password">
+                       <input type="password" placeholder="Password" value={this.state.userPassword} onChange={this.eventPassword} />
+                   </div>
+                   <div className="submit-button-div">
+                       <button type="submit" className="submit-button">Register</button>
+                   </div>
+               </form>
+         </div>
+   </div>
         );
         }
         else{

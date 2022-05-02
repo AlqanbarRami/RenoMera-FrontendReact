@@ -1,11 +1,11 @@
 import React from "react"
 import { About } from "./about.js";
-import { ConstructionPage } from "../../Construction/constructionpage.js";
+import { ConstructionPage } from "./constructionpage.js";
 import { Contact } from "./contact.js";
-import { CustomerPage } from "../../customerpage.js";
-import { Login } from "../../../login.js";
-import { Main } from './Main.js.js.js.js'
-import { SupplierPage } from "../../../supplierpage.js";
+import { CustomerPage } from "./customerpage.js";
+import { Login } from "./login.js";
+import { Main } from './Main.js'
+import { SupplierPage } from "./supplierpage.js";
 
 
 

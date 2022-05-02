@@ -1,7 +1,8 @@
 import React from "react"
-import {ConstructionPage}  from "../Construction/constructionpage.js";
-import {CustomerPage} from "../Customer/customerpage.js";
-import  {SupplierPage}  from "../Supplier/supplierpage.js";
+
+import {ConstructionPage}  from "./constructionpage.js";
+import {CustomerPage} from "./customerpage";
+import  {SupplierPage}  from "./supplierpage.js";
 
 
 
