@@ -1,27 +1,37 @@
 import React from "react";
 import { useState } from "react"
+import { callerConstruction } from "../../Services/api";
 
-export function ConstructionNewPost(props){
-    const[Title,setTitle] = useState('');
-    const[Description, setDescription] = useState('');
-    const[Image,setImage]= useState('');
-    const[Phone, setPhone] = useState('');
+export class ConstructionNewPost extends React.Component{
+    constructor(props){
+        super(props)
+        this.onCreatePost = this.onCreatePost.bind(this)
+        this.state = {
+            Title:'',
+            Description: '',
+            Image: '',
+            Phone: ''
+        };
+    }
 
-    function onCreatePost(e){
+
+    onCreatePost(e){
         e.preventDefault();
         const postData = {
-            Title,
-            Description,
-            Image,
-            Phone,
+            Title: this.state.Title,
+            Description: this.state.Description,
+            Image: this.state.Image,
+            Phone: this.state.Phone,
         };
 
-        callerCustomer.post('/newpost', postData).then((response)=>{
+        callerConstruction.post('/newpost', postData).then((response)=>{
             console.log(response.status);
+            window.location.reload();
         });
-
         
     }
+
+    render(){
     return(
         <div className="post-container">
         <div className="construction-post-container">
@@ -29,18 +39,18 @@ export function ConstructionNewPost(props){
                 <span>Describe What You Need</span>
             </div>
             <div className="construction-post-contents">
-            <form onSubmit={onCreatePost}>
+            <form onSubmit={this.onCreatePost}>
                 <div>
-                    <input type="text" value={Title}  onChange={(e)=>setTitle(e.target.value)} placeholder="Title"/>
+                    <input type="text" value={this.state.Title}  onChange={(e)=>this.setState({Title: e.target.value})} placeholder="Title"/>
                 </div>
                 <div>
-                    <input type="text" value={Description}  onChange={(e)=>setDescription(e.target.value)} placeholder="Description"/>
+                    <input type="text"  value={this.state.Description}  onChange={(e)=>this.setState({Description: e.target.value})} placeholder="Description"/>
                 </div>
                 <div>
-                    <input type="text" value={Image}  onChange={(e)=>setImage(e.target.value)} placeholder="Image URL"/>
+                    <input type="text"  value={this.state.Image}  onChange={(e)=>this.setState({Image: e.target.value})} placeholder="Image URL"/>
                 </div>
                 <div>
-                    <input type="text" value={Phone}  onChange={(e)=>setPhone(e.target.value)} placeholder="Phone Number"/>
+                    <input type="text"  value={this.state.Phone}  onChange={(e)=>this.setState({Phone: e.target.value})} placeholder="Phone Number"/>
                 </div>
                 <div>
                 <div className="submit-add-button">
@@ -53,4 +63,5 @@ export function ConstructionNewPost(props){
         </div>
 
     )
+    }
 }

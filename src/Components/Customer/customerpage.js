@@ -1,5 +1,7 @@
 import React from "react"
+import SupplierPosts from "../Supplier/supplier-posts.js";
 import { CustomerNewPost } from "./customer-add-post.js";
+import { CustomerMyPosts } from "./customer-my-posts.js";
 
 export class CustomerPage extends React.Component{
 
@@ -63,13 +65,13 @@ export class CustomerPage extends React.Component{
         }
         else if(this.state.buyMaterial){
             return(
-                <span>Buy</span>
+                <SupplierPosts />
             )
         }
 
         else if(this.state.yourPosts){
             return(
-                <span>My post</span>
+                <CustomerMyPosts/>
             )
         }
         

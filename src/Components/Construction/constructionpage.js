@@ -1,5 +1,8 @@
 import React from "react"
+import CustomerPosts from "../Customer/customer-posts";
+import SupplierPosts from "../Supplier/supplier-posts";
 import { ConstructionNewPost } from "./construction-add-post"; 
+import { ConstructionMyPosts } from "./construction-my-posts";
 
 export class ConstructionPage extends React.Component{
     constructor(props) {
@@ -26,7 +29,7 @@ export class ConstructionPage extends React.Component{
     }
 
     DisplayMaterial(){
-        this.setState({constructionMain:false, findTask:false, findMaterial:true, displayMaterial:true, yourPosts:false})
+        this.setState({constructionMain:false, findTask:false, findMaterial:false, displayMaterial:true, yourPosts:false})
     }
 
     YourPosts(){
@@ -62,7 +65,7 @@ export class ConstructionPage extends React.Component{
         }
         else if(this.state.findTask){
             return(
-            <span>Display Tasks</span>
+            <CustomerPosts />
             )
         }
         else if(this.state.findMaterial){
@@ -72,12 +75,12 @@ export class ConstructionPage extends React.Component{
         }
         else if(this.state.displayMaterial){
             return(
-            <span>Display Material</span>
+            <SupplierPosts/>
             )
         }
         else if(this.state.yourPosts){
             return(
-            <span>My post</span>
+                <ConstructionMyPosts/>
             )
         }
 

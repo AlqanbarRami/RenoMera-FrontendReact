@@ -1,58 +1,66 @@
 import React from "react";
-import { useState } from "react"
+import { callerSupplier } from "../../Services/api";
 
-export function SupplierNewPost(props){
-    const[title,setTitle] = useState('');
-    const[Description, setDescription] = useState('');
-    const[Image,setImage]= useState('');
-    const[City,setCity]= useState('');
-    const[Price,setPrice]= useState('');
-    const[Phone, setPhone] = useState('');
 
-    
-    function onCreatePost(e){
+export class SupplierNewPost extends React.Component{
+    constructor(props){
+        super(props)
+        this.onCreatePost = this.onCreatePost.bind(this)
+        this.state = {
+            title: '',
+            Description:'',
+            Image:'',
+            City:'',
+            Price: '',
+            Phone: '',
+        };
+    }
+
+        onCreatePost(e){
         e.preventDefault();
         const postData = {
-            title,
-            Description,
-            Image,
-            City,
-            Price,
-            Phone,
+            title:this.state.title,
+            Description:this.state.Description,
+            Image:this.state.Image,
+            City:this.state.City,
+            Price: this.state.Price,
+            Phone:this.state.Phone,
         };
-
-
-        callerCustomer.post('/newpost', postData).then((response)=>{
-            console.log(response.status);
+        callerSupplier.post('/newpost', postData).then((response)=>{
+            if(response.status == 200){
+                console.log("Ok")
+                window.location.reload();
+            } 
         });
-
-        
-    }
+       
+    }    
+    
+    render(){     
     return(
         <div className="post-container">
         <div className="supplier-post-container">
             <div className="describe-supplier">
-                <span>Describe What You Need</span>
+                <span>What will you sell?</span>
             </div>
             <div className="supplier-post-contents">
-            <form onSubmit={onCreatePost}>
+            <form onSubmit={this.onCreatePost}>
                 <div>
-                    <input type="text" value={title}  onChange={(e)=>setTitle(e.target.value)} placeholder="Title"/>
+                    <input type="text" value={this.state.title}  onChange={(e)=>this.setState({title: e.target.value})} placeholder="Title"/>
                 </div>
                 <div>
-                    <input type="text" value={Description}  onChange={(e)=>setDescription(e.target.value)} placeholder="Description"/>
+                    <input type="text" value={this.state.Description}  onChange={(e)=>this.setState({Description: e.target.value})} placeholder="Description"/>
                 </div>
                 <div>
-                    <input type="text" value={Image}  onChange={(e)=>setImage(e.target.value)} placeholder="Image URL"/>
+                    <input type="text" value={this.state.Image}  onChange={(e)=>this.setState({Image: e.target.value})} placeholder="Image URL"/>
                 </div>
                 <div>
-                    <input type="text" value={City}  onChange={(e)=>setCity(e.target.value)} placeholder="City"/>
+                    <input type="text" value={this.state.City}  onChange={(e)=>this.setState({City: e.target.value})} placeholder="City"/>
                 </div>
                 <div>
-                    <input type="text" value={Price}  onChange={(e)=>setPrice(e.target.value)} placeholder="Price"/>
+                    <input type="text" value={this.state.Price}  onChange={(e)=>this.setState({Price: e.target.value})} placeholder="Price"/>
                 </div>
                 <div>
-                    <input type="text" value={Phone}  onChange={(e)=>setPhone(e.target.value)} placeholder="Phone Number"/>
+                    <input type="text" value={this.state.Phone}  onChange={(e)=>this.setState({Phone: e.target.value})} placeholder="Phone Number"/>
                 </div>
                 <div>
                 <div className="submit-add-button">
@@ -65,4 +73,5 @@ export function SupplierNewPost(props){
         </div>
 
     )
+    }
 }

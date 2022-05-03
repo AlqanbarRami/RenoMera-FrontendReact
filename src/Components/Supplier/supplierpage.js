@@ -1,5 +1,7 @@
 import React from "react"
+import ConstructionPosts from "../Construction/construction-posts";
 import { SupplierNewPost } from "./supplier-add-post";
+import { SupplierMyPosts } from "./supplier-my-posts";
 
 export class SupplierPage extends React.Component{
     constructor(props) {
@@ -58,12 +60,12 @@ export class SupplierPage extends React.Component{
         }
         if(this.state.findBuyer){
             return(
-                <span>find Buyer</span>
+                <ConstructionPosts/>
             )
         }
         if(this.state.yourPosts){
             return(
-                <span>Your Posts</span>
+               <SupplierMyPosts/>
             )
         }
     }
