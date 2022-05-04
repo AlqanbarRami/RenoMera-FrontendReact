@@ -1,9 +1,7 @@
 import React from "react";
-import { useState } from "react"
-import { About } from "../General/about.js";
 import { callerCustomer } from "../../Services/api";
-import { CustomerPage } from "../Customer/customerpage";
-import { render } from "react-dom/cjs/react-dom.production.min";
+import {Helmet} from "react-helmet";
+
 
 export class CustomerNewPost extends React.Component{
     constructor(props){
@@ -40,6 +38,10 @@ export class CustomerNewPost extends React.Component{
     
         render(){
         return( 
+            <div>
+            <Helmet>
+            <title>Customer : Add New Post</title>
+        </Helmet>
             <div className="post-container">
             <div className="customer-post-container">
                 <div className="describe-customer">
@@ -68,6 +70,7 @@ export class CustomerNewPost extends React.Component{
                     </div>
                     </div>
                 </form>
+            </div>
             </div>
             </div>
             </div>

@@ -1,4 +1,5 @@
 import React from "react"
+import Helmet from "react-helmet";
 import SupplierPosts from "../Supplier/supplier-posts.js";
 import { CustomerNewPost } from "./customer-add-post.js";
 import { CustomerMyPosts } from "./customer-my-posts.js";
@@ -42,7 +43,11 @@ export class CustomerPage extends React.Component{
 
     render(){
         if( this.state.customerMain){
-        return( 
+        return(
+            <div>
+            <Helmet>
+            <title>Welcome Customer!</title>
+        </Helmet>
             <div className="customer-container">
             <div className="customer-page">
             <div className="customer-welcome"><span>
@@ -53,6 +58,7 @@ export class CustomerPage extends React.Component{
                 <span onClick={this.NewPost}>Ask Help</span>
                 <span onClick={this.ShowMatrial}>Buy Material</span>
                 <span onClick={this.ShowPosts}>Your Posts</span>
+                </div>
                 </div>
                 </div>
                 </div>

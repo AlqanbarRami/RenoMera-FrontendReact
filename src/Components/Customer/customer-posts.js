@@ -1,5 +1,6 @@
 import { callerCustomer} from "../../Services/api.js"
 import React from "react"
+import Helmet from "react-helmet";
 
 export default class CustomerPosts extends React.Component{
     constructor(props){
@@ -48,6 +49,10 @@ export default class CustomerPosts extends React.Component{
     }
     render(){
         return(
+            <div>
+            <Helmet>
+            <title>All Customers Posts</title>
+        </Helmet>
         <div className="customer-posts-container">
             <div className="customer-posts-header">
             <span>Here are all the customers who need your services</span>
@@ -55,7 +60,7 @@ export default class CustomerPosts extends React.Component{
             <div className="customer-posts-main">
             {this.state.Posts}
             </div>
-           
+           </div>
             </div>
         )
     }

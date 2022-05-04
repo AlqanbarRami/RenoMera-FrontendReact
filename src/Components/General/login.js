@@ -1,4 +1,5 @@
 import React from "react"
+import Helmet from "react-helmet";
 import {ConstructionPage}  from "../Construction/constructionpage.js";
 import {CustomerPage} from "../Customer/customerpage.js";
 import  {SupplierPage}  from "../Supplier/supplierpage.js";
@@ -72,6 +73,10 @@ export class Login extends React.Component {
 
     showLoginForm(){
         return(
+            <div>
+            <Helmet>
+            <title>RenoMera Login</title>
+        </Helmet>
             <div className="login-container">
                 <div className="login-sub-container">
                     <div className="login-now">
@@ -85,6 +90,7 @@ export class Login extends React.Component {
                     </div>
                 </div>
                 </div>  
+                </div>
         )
         
     }

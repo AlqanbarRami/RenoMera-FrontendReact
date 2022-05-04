@@ -1,5 +1,6 @@
 
 import React from "react"
+import Helmet from "react-helmet";
 import {Login}   from '../General/login.js'
 
 export class Supplier  extends React.Component{
@@ -59,6 +60,10 @@ export class Supplier  extends React.Component{
     render() {
         {if(this.state.comp){
         return (
+            <div>
+            <Helmet>
+            <title>Register new Supplier</title>
+        </Helmet>
                 <div className="register-container">
                 <div className="register-div">
                 <div className="choose">
@@ -76,6 +81,7 @@ export class Supplier  extends React.Component{
                        </div>
                    </form>
              </div>
+       </div>
        </div>
         );
         }

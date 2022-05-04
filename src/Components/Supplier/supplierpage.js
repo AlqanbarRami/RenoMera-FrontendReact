@@ -1,4 +1,5 @@
 import React from "react"
+import Helmet from "react-helmet";
 import ConstructionPosts from "../Construction/construction-posts";
 import { SupplierNewPost } from "./supplier-add-post";
 import { SupplierMyPosts } from "./supplier-my-posts";
@@ -38,6 +39,10 @@ export class SupplierPage extends React.Component{
     render(){
         if(this.state.supplierMain){
         return(
+            <div>
+            <Helmet>
+            <title>Welcome Supplier</title>
+        </Helmet>
             <div className="supplier-container">
             <div className="supplier-page">
             <div className="supplier-welcome"><span>
@@ -48,6 +53,7 @@ export class SupplierPage extends React.Component{
                 <span onClick={this.SellMatrial}>Sell Material</span>
                 <span onClick={this.FindBuyer}>Find buyer</span>
                 <span onClick={this.YourPosts}>You Posts</span>
+                </div>
                 </div>
                 </div>
                 </div>

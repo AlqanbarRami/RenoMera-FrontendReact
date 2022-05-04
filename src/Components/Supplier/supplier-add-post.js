@@ -1,4 +1,5 @@
 import React from "react";
+import Helmet from "react-helmet";
 import { callerSupplier } from "../../Services/api";
 
 
@@ -37,6 +38,10 @@ export class SupplierNewPost extends React.Component{
     
     render(){     
     return(
+        <div>
+                    <Helmet>
+                    <title>Supplier Add new sell </title>
+                </Helmet>
         <div className="post-container">
         <div className="supplier-post-container">
             <div className="describe-supplier">
@@ -68,6 +73,7 @@ export class SupplierNewPost extends React.Component{
                 </div>
                 </div>
             </form>
+        </div>
         </div>
         </div>
         </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react"
+import Helmet from "react-helmet";
 import { callerConstruction } from "../../Services/api";
 
 export class ConstructionNewPost extends React.Component{
@@ -33,6 +33,10 @@ export class ConstructionNewPost extends React.Component{
 
     render(){
     return(
+        <div>
+        <Helmet>
+        <title>Construction Add New Post</title>
+    </Helmet>
         <div className="post-container">
         <div className="construction-post-container">
             <div className="describe-construction">
@@ -58,6 +62,7 @@ export class ConstructionNewPost extends React.Component{
                 </div>
                 </div>
             </form>
+        </div>
         </div>
         </div>
         </div>

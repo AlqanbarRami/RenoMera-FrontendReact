@@ -1,5 +1,6 @@
 import { callerConstruction} from "../../Services/api.js"
 import React from "react"
+import Helmet from "react-helmet";
 
 export default class ConstructionPosts extends React.Component{
     constructor(props){
@@ -48,6 +49,10 @@ export default class ConstructionPosts extends React.Component{
     }
     render(){
         return(
+            <div>
+            <Helmet>
+            <title>All Construction Posts</title>
+        </Helmet>
         <div className="construction-posts-container">
             <div className="construction-posts-header">
             <span>Here are all the customers who need to buy something!</span>
@@ -55,7 +60,7 @@ export default class ConstructionPosts extends React.Component{
             <div className="construction-posts-main">
             {this.state.Posts}
             </div>
-           
+           </div>
             </div>
         )
     }
