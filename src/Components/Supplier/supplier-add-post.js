@@ -1,6 +1,8 @@
 import React from "react";
 import Helmet from "react-helmet";
+import { ErrorBoundary } from "../../errorBoundary";
 import { callerSupplier } from "../../Services/api";
+import { SupplierMyPosts } from "./supplier-my-posts";
 
 
 export class SupplierNewPost extends React.Component{
@@ -14,29 +16,62 @@ export class SupplierNewPost extends React.Component{
             City:'',
             Price: '',
             Phone: '',
+            Error: "",
+            msg:''
         };
     }
 
         onCreatePost(e){
         e.preventDefault();
+        let myerr = false;
         const postData = {
             title:this.state.title,
+            userId: localStorage.getItem('Id'),
             Description:this.state.Description,
             Image:this.state.Image,
             City:this.state.City,
             Price: this.state.Price,
             Phone:this.state.Phone,
         };
-        callerSupplier.post('/newpost', postData).then((response)=>{
-            if(response.status == 200){
-                console.log("Ok")
-                window.location.reload();
-            } 
-        });
-       
+        const valuesToLoop = Object.values(postData);
+        for (const value of valuesToLoop) {
+            if (value == "" ) {
+                this.setState({ Error: "error", msg:"Please fill fields"})
+                myerr = true;
+            }
+            else if(isNaN(postData.Phone) || isNaN(postData.Price)){
+                this.setState({Error: "error", msg:'Phone and Price should be numbers'})
+                myerr = true;
+
+            }
+            else{
+                this.setState({Error:"noError"})
+            }
+        }
+        if (myerr == false ) {
+            console.log(this.state.Error)
+            callerSupplier.post('/newpost', postData).then((response) => {
+                if (response.status == 200) {
+                    console.log("Ok!")
+                }
+            });
+        }
     }    
     
     render(){     
+        if (this.state.Error == "error" ) {
+            return (
+                <ErrorBoundary>
+                    <SupplierMyPosts Error={this.state.Error} msg={this.state.msg} />
+                </ErrorBoundary>
+            )
+        }
+        if (this.state.Error == "noError" ) {
+            return (
+                    <SupplierMyPosts />
+            )
+        }
+        else{
     return(
         <div>
                     <Helmet>
@@ -80,4 +115,5 @@ export class SupplierNewPost extends React.Component{
 
     )
     }
+}
 }

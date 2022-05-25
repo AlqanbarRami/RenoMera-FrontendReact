@@ -1,23 +1,28 @@
 import { callerConstruction} from "../../Services/api.js"
 import React from "react"
 import Helmet from "react-helmet";
+import PropTypes from 'prop-types';
+import { ApiError } from "../../ApiError.js";
+
 
 export default class ConstructionPosts extends React.Component{
     constructor(props){
         super(props);
 
         this.state = {
-            Posts: []
+            Posts: [],
+            Error: ""
         };
     }
  
-
-    getConstructionPost(){
+    getConnect(){
         callerConstruction.get('/post', {})
         .then(res => {
+            let info;
+            if ( res.request.status != 0) {
+            this.setState({Error:"noError"})          
             const data = res.data
-            console.log(data);
-            const info = data.map(u =>
+             info = data.map(u =>
                 <div key={u.customerPostId} className="construction-posts">
                 <div className="construction-posts-image-div">
                 <img className="construction-posts-image" src={u.image} alt="image"/>
@@ -35,19 +40,30 @@ export default class ConstructionPosts extends React.Component{
                 </div>
                 </div>
                 )
-                this.setState({
-                    Posts : info
-                })
+                this.setState({Posts:info})
+            }
+            else{
+                return(false)
+            }
+         
         })
-        .catch((error)=>{
-          console.log(error)
-        });
+    }
+
+    getConstructionPost(){
+  
+        if(this.getConnect() == false){
+            this.setState({Error:"error"})
+        }
+        else{
+            return(this.state.Posts)
+        }
     }
 
     componentDidMount(){
-        this.getConstructionPost();
+      this.getConstructionPost()
     }
     render(){
+        if(this.state.Error =="noError"){
         return(
             <div>
             <Helmet>
@@ -64,4 +80,10 @@ export default class ConstructionPosts extends React.Component{
             </div>
         )
     }
+    else{
+        return(
+            <ApiError/>
+        )
+    }
+}
 }

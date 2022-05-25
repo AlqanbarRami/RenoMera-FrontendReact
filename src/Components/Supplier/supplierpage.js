@@ -3,6 +3,8 @@ import Helmet from "react-helmet";
 import ConstructionPosts from "../Construction/construction-posts";
 import { SupplierNewPost } from "./supplier-add-post";
 import { SupplierMyPosts } from "./supplier-my-posts";
+import PropTypes from 'prop-types';
+
 
 export class SupplierPage extends React.Component{
     constructor(props) {
@@ -77,3 +79,4 @@ export class SupplierPage extends React.Component{
     }
     
 }
+

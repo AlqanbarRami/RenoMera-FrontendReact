@@ -2,6 +2,8 @@ import React from "react"
 import { Customer } from '../Customer/customer.js'
 import { Construction } from '../Construction/construction.js'
 import { Supplier } from '../Supplier/supplier.js'
+import { ApiError } from "../../ApiError.js"
+import { callerConstruction } from "../../Services/api.js"
 
 
 
@@ -17,6 +19,7 @@ export class Main extends React.Component {
       customer: false,
       company: false,
       supplier: false,
+      ErrorConnect:true,
     };
   }
 
@@ -74,7 +77,10 @@ export class Main extends React.Component {
   }
     else if (this.state.customer) {
       return (
-        <Customer />
+        
+           <Customer />
+
+        
       )
     }
     else if (this.state.company) {
@@ -90,7 +96,28 @@ export class Main extends React.Component {
 
   }
 
+  check(){
+    callerConstruction.get('/post',{}).then((res=>{
+        if(res.request.status == 0){
+                this.setState({ErrorConnect:true, state:false })
+        }
+        else{
+          this.setState({ErrorConnect:false, state:true })
+        }
+  
+    }))
+}
+
+componentDidMount(){
+this.check();
+
+}
+
   render() {
+    if(this.state.ErrorConnect){
+      return(
+      <ApiError/>)
+    }
     return (
       this.ShowRegisterOrSelectMenu()
     );

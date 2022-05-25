@@ -4,6 +4,8 @@ import CustomerPosts from "../Customer/customer-posts";
 import SupplierPosts from "../Supplier/supplier-posts";
 import { ConstructionNewPost } from "./construction-add-post"; 
 import { ConstructionMyPosts } from "./construction-my-posts";
+import PropTypes from 'prop-types';
+
 
 export class ConstructionPage extends React.Component{
     constructor(props) {
@@ -92,3 +94,4 @@ export class ConstructionPage extends React.Component{
 
     }
 }
+

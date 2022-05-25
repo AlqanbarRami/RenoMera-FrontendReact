@@ -2,7 +2,8 @@ import React from "react"
 import ReactDOM from "react-dom/client"
 import Helmet from "react-helmet";
 import { Footer } from "./Components/General/footer.js"
-import { Header } from "./Components/General/header.js";
+import { Header } from "./Components/General/header";
+
 
 
 
@@ -13,6 +14,7 @@ class Application extends React.Component{
                     <Helmet>
                     <title>RenoMera: App For Alla</title>
                 </Helmet>
+                
       <Header />
       <Footer />
       </div>

@@ -1,123 +1,107 @@
 import React from "react"
 import Helmet from "react-helmet";
-import {ConstructionPage}  from "../Construction/constructionpage.js";
-import {CustomerPage} from "../Customer/customerpage.js";
-import  {SupplierPage}  from "../Supplier/supplierpage.js";
+import { callerRegister } from "../../Services/api.js";
+import PropTypes from "prop-types";
+
 
 
 
 export class Login extends React.Component {
     constructor(props) {
         super(props);
-        this.CheckUser = this.CheckUser.bind(this)
-        this.userInfo = JSON.parse(sessionStorage.getItem('user'))
+        this.onFormSubmit = this.onFormSubmit.bind(this)
         this.state = {
-            construction : false,
-            supplier : false,
-            customer : false,
-        
-        }
+            Name: '',
+            Pass: '',
+            msg: ''
+
+        };
     }
 
-    showConstruction(){
-        this.setState({  construction : true,
-            supplier : false,
-            customer : false
-            })
-    }
 
-    showSupplier(){
-        this.setState({  construction : false,
-            supplier : true,
-            customer : false
-            })
-    }
 
-    showCustomer(){
-        this.setState({  construction : false,
-            supplier : false,
-            customer : true
-            });
-    }
+    onFormSubmit(e) {
+        e.preventDefault();
+        const post = {
+            UserName: this.state.Name,
+            PassWord: this.state.Pass,
+        };
 
-    refresh() {
-        sessionStorage.clear();
-        window.location.reload();
-      }
-
-    CheckUser(){
-        const user = document.getElementById("user").value;
-        const pass = document.getElementById("pass").value;
-        
-        if( (user == this.userInfo.userName) && (pass == this.userInfo.userPassword) ){
-            if(this.userInfo.role == "construction"){
-                this.refresh();
-                sessionStorage.setItem("logged","construction")
-                this.showConstruction();
+        const valuesToLoop = Object.values(post);
+        for (const value of valuesToLoop) {
+            if (value == "") {
+                this.setState({ msg: 'Username or password invaild. be sure there is no empty field' })
             }
-            else if(this.userInfo.role == "supplier"){
-                this.refresh();
-                sessionStorage.setItem("logged","supplier")
-                this.showSupplier();
+            else {
+                this.setState({ msg: 'Checking......' })
+                callerRegister.post('/login', post).then((response) => {
+                    if (response.request.status == 200) {
+                        console.log("logged")
+                        localStorage.setItem("logged", response.data.role);
+                        localStorage.setItem("Id", response.data.id);
+                        window.location.reload();
+                    }
+                })
+                    .catch((error) => {
+                        if (error.response.status == 400) {
+                            this.setState({ msg: 'Username Or password invaild' })
+                        }
+                        if (error.response.status == 0) {
+                            this.setState({ msg: 'Problem : connection with api' })
+                        }
 
-            }
-            else if(this.userInfo.role == "customer"){
-                this.refresh();
-                sessionStorage.setItem("logged","customer")
-                this.showCustomer();
+                    })
 
             }
         }
-  
     }
 
-    showLoginForm(){
-        return(
+
+    showLoginForm() {
+        return (
             <div>
-            <Helmet>
-            <title>RenoMera Login</title>
-        </Helmet>
-            <div className="login-container">
-                <div className="login-sub-container">
-                    <div className="login-now">
-                        <span> Login Now
-                        </span>
-                    </div>
-                    <div className="login-input">
-                        <input type="text" id="user" placeholder="User"></input>
-                        <input type="password" id="pass" placeholder="Password"></input>
-                        <button className="login-button" onClick={this.CheckUser}>Login</button>
+                <Helmet>
+                    <title>RenoMera Login</title>
+                </Helmet>
+                <div className="login-container">
+                    <div className="login-sub-container">
+                        <div className="login-now">
+                            <span> Login Now
+                            </span>
+                        </div>
+                        <form className="login-input" onSubmit={this.onFormSubmit}>
+                            <div className="username">
+                                <input type="text" placeholder="Username" value={this.state.Name} onChange={(e) => this.setState({ Name: e.target.value })} />
+                            </div>
+                            <div className="password">
+                                <input type="password" placeholder="Password" value={this.state.Pass} onChange={(e) => this.setState({ Pass: e.target.value })} />
+                            </div>
+                            <span>{this.state.msg}</span>
+                            <div className="submit-button-div">
+                                <button type="submit" className="login-button">login</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
-                </div>  
-                </div>
+            </div>
         )
-        
     }
 
-    render(){
-        if(this.state.customer){
-            return(
-                <CustomerPage/>
-            )
+    render() {
+        if (this.props.Error == 'error') {
+            throw new Error(this.props.msg);
         }
-        if(this.state.construction){
-            return(
-                <ConstructionPage/>
-            )
-        }
-        if(this.state.supplier){
-            return(
-                <SupplierPage/>
-            )
-        }
-        else{
-            return(
-                this.showLoginForm()      
-                 )
-            }
-        }
+        return (
+            this.showLoginForm()
+        )
 
-    
+    }
+
+
 }
 
+
+Login.propTypes={
+    Error:PropTypes.bool,
+    msg:PropTypes.string
+}

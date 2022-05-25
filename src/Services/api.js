@@ -13,3 +13,6 @@ export const callerSupplier = axios.create({
     baseURL : 'https://localhost:5001/api/supplier'
 })
 
+export const callerRegister = axios.create({
+    baseURL : 'https://localhost:5001/api/users'
+})

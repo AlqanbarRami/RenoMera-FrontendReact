@@ -1,20 +1,49 @@
 import React from "react"
-import Helmet from "react-helmet"
+import { callerConstruction } from "../../Services/api";
+import ShowPosts from "../ReUseComponents/show-posts";
+import PropTypes from "prop-types";
+
 
 export class ConstructionMyPosts extends React.Component{
-    render(){
-        return(
-            <div>
-            <Helmet>
-            <title>Construction Your Posts</title>
-        </Helmet>
-            <div className="construction-container">
-            <div className="construction-page-myposts">
-                <span>Welcome Construction!<br></br> <br></br>
-                The application is under development, here your posts will appear so that you can edit or delete them. Perhaps it will also be a story, where the company can posts of its work so that people can view it.</span></div>
-                </div>
-                </div>
+ 
+    constructor(props){
+        super(props)
+    this.state = {
+        PostsData: []
+    };
+}
 
-        )
-    }
+getConstructionPost(){
+    callerConstruction.get(`/${localStorage.getItem("Id")}`, {})
+    .then(res => {
+            this.setState({
+                PostsData : res.data
+            })
+    })
+    .catch((error)=>{
+      console.log(error)
+    });
+}
+
+componentDidMount(){
+    this.getConstructionPost();
+}
+
+render(){
+        if(this.props.Error == "error"){
+            throw new Error(this.props.msg);
+        }
+        else{
+            return(
+            <ShowPosts PostsData={this.state.PostsData}/>
+            )
+
+}
+}
+}
+
+ConstructionMyPosts.propTypes={
+
+    Error:PropTypes.string,
+    msg:PropTypes.string
 }

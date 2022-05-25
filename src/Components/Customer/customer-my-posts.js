@@ -1,20 +1,46 @@
 import React from "react"
 import Helmet from "react-helmet"
+import { callerCustomer } from "../../Services/api";
+import ShowPosts from "../ReUseComponents/show-posts";
+import PropTypes from "prop-types";
 
 export class CustomerMyPosts extends React.Component{
-    render(){
-        return(
-            <div>
-            <Helmet>
-            <title>Customer : Your Posts</title>
-        </Helmet>
-            <div className="customer-container">
-            <div className="customer-page-myposts">
-                <span>Welcome Customer!<br></br> <br></br>
-                The application is under development, here your posts will appear so that you can edit or delete them</span></div>
-                </div>
-                </div>
+    constructor(props){
+        super(props);
 
-        )
+        this.state = {
+            PostsData: []
+        };
     }
+    getCustomersPost(){
+        callerCustomer.get(`/${localStorage.getItem("Id")}`, {})
+        .then(res => {
+                this.setState({
+                    PostsData : res.data
+                })
+        })
+        .catch((error)=>{
+          console.log(error)
+        });
+    }
+
+    componentDidMount(){
+        this.getCustomersPost();
+    }
+
+    render(){
+            if(this.props.Error == "error"){
+                throw new Error(this.props.msg);
+            }
+            else{
+                return(
+                <ShowPosts PostsData={this.state.PostsData}/>
+                )
+    }
+}
+}
+
+CustomerMyPosts.propTypes = {
+    Error: PropTypes.string,
+    msg: PropTypes.string
 }

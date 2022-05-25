@@ -3,6 +3,8 @@ import Helmet from "react-helmet";
 import SupplierPosts from "../Supplier/supplier-posts.js";
 import { CustomerNewPost } from "./customer-add-post.js";
 import { CustomerMyPosts } from "./customer-my-posts.js";
+import PropTypes from 'prop-types';
+
 
 export class CustomerPage extends React.Component{
 
@@ -42,6 +44,7 @@ export class CustomerPage extends React.Component{
 
 
     render(){
+    
         if( this.state.customerMain){
         return(
             <div>
@@ -88,3 +91,4 @@ export class CustomerPage extends React.Component{
         
     }
 }
+

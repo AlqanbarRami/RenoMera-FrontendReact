@@ -12,7 +12,8 @@ import { SupplierPage } from "../Supplier/supplierpage.js";
 export class Header extends React.Component {
   constructor(props) {
     super(props)
-    this.user = sessionStorage.getItem('logged');
+    this.user = localStorage.getItem('logged');
+    this.Id = localStorage.getItem("Id");
     this.state = {
       main: true,
       about: false,
@@ -20,7 +21,6 @@ export class Header extends React.Component {
       login: false,
       homebutton : "",
       loginbutton : "Login"
-
     };
   }
 
@@ -56,10 +56,10 @@ export class Header extends React.Component {
 
 
   componentDidMount() {
-    if (this.user === null) {
+    if (this.user === null ) {
       this.setState({homebutton: "Home"})
     }
-    else if(this.user !== null){
+    else if(this.user !== null ){
       this.setState({loginbutton:"Logout"})
       if(this.user == "customer"){
       this.setState({homebutton: "Customer"})
@@ -75,7 +75,7 @@ export class Header extends React.Component {
 }
 
   Logout() {
-    sessionStorage.clear();
+    localStorage.clear();
     window.location.reload();
   }
 

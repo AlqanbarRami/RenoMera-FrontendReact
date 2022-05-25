@@ -1,6 +1,8 @@
 import React from "react";
 import Helmet from "react-helmet";
+import { ErrorBoundary } from "../../errorBoundary";
 import { callerConstruction } from "../../Services/api";
+import { ConstructionMyPosts } from "./construction-my-posts";
 
 export class ConstructionNewPost extends React.Component{
     constructor(props){
@@ -10,28 +12,63 @@ export class ConstructionNewPost extends React.Component{
             Title:'',
             Description: '',
             Image: '',
-            Phone: ''
+            Phone: '',
+            Error: "",
+            msg:''
         };
     }
 
 
     onCreatePost(e){
         e.preventDefault();
+        let myerr = false;
         const postData = {
             Title: this.state.Title,
+            userId: localStorage.getItem('Id'),
             Description: this.state.Description,
             Image: this.state.Image,
             Phone: this.state.Phone,
         };
+        const valuesToLoop = Object.values(postData);
+        for (const value of valuesToLoop) {
+            if (value == "" ) {
+                this.setState({ Error: "error", msg:"Please fill fields"})
+                myerr = true;
+            }
+            else if(isNaN(postData.Phone)){
+                this.setState({Error: "error", msg:'Phonenumber should be numbers'})
+                myerr = true;
 
-        callerConstruction.post('/newpost', postData).then((response)=>{
-            console.log(response.status);
-            window.location.reload();
-        });
-        
+            }
+            else{
+                this.setState({Error:"noError"})
+            }
+        }
+
+        if (myerr == false ) {
+            console.log(this.state.Error)
+            callerConstruction.post('/newpost', postData).then((response) => {
+                if (response.status == 200) {
+                    console.log("Ok")
+                }
+            });
+        }
     }
 
     render(){
+        if (this.state.Error == "error" ) {
+            return (
+                <ErrorBoundary>
+                    <ConstructionMyPosts Error={this.state.Error} msg={this.state.msg} />
+                </ErrorBoundary>
+            )
+        }
+        if (this.state.Error == "noError" ) {
+            return (
+                    <ConstructionMyPosts />
+            )
+        }
+        else {
     return(
         <div>
         <Helmet>
@@ -70,3 +107,5 @@ export class ConstructionNewPost extends React.Component{
     )
     }
 }
+}
+

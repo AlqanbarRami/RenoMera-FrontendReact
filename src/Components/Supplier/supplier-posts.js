@@ -1,23 +1,28 @@
 import { callerSupplier} from "../../Services/api.js"
 import React from "react"
 import Helmet from "react-helmet";
+import PropTypes from 'prop-types';
+import { ApiError } from "../../ApiError.js";
+
 
 export default class SupplierPosts extends React.Component{
     constructor(props){
         super(props);
 
         this.state = {
-            Posts: []
+            Posts: [],
+            Error: ""
         };
     }
     
-
-    getSupplierPost(){
+    getConnect(){
         callerSupplier.get('/post', {})
         .then(res => {
+            let info;
+            if ( res.request.status != 0) {
+                this.setState({Error:"noError"})          
             const data = res.data
-            console.log(data);
-            const info = data.map(u =>
+             info = data.map(u =>
                 <div key={u.supplierPostId} className="supplier-posts">
                 <div className="supplier-posts-image-div">
                 <img className="supplier-posts-image" src={u.image} alt="image"/>
@@ -40,16 +45,31 @@ export default class SupplierPosts extends React.Component{
                 this.setState({
                     Posts : info
                 })
+            }
+            else{
+                return(
+                    false
+                )
+
+            }
         })
-        .catch((error)=>{
-          console.log(error)
-        });
+
+    }
+
+    getSupplierPost(){
+        if(this.getConnect() == false){
+            this.setState({Error:"error"})
+        }
+        else{
+            return(this.state.Posts)
+        }
     }
 
     componentDidMount(){
         this.getSupplierPost();
     }
     render(){
+        if(this.state.Error =="noError"){
         return(
             <div>
             <Helmet>
@@ -65,5 +85,11 @@ export default class SupplierPosts extends React.Component{
             </div>
             </div>
         )
+    }
+else{
+    return(
+        <ApiError/>
+    )
+}
     }
 }

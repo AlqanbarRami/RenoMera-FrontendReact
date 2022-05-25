@@ -1,22 +1,27 @@
 import { callerCustomer} from "../../Services/api.js"
 import React from "react"
 import Helmet from "react-helmet";
+import { ApiError } from "../../ApiError.js";
+
 
 export default class CustomerPosts extends React.Component{
     constructor(props){
         super(props);
 
         this.state = {
-            Posts: []
+            Posts: [],
+            Error:""
         };
     }
 
-    getCustomersPost(){
+    getConnect(){
         callerCustomer.get('/post', {})
         .then(res => {
-            const data = res.data
-            console.log(data);
-            const info = data.map(u =>
+            let info;
+            if ( res.request.status != 0) {
+            this.setState({Error:"noError"})   
+            const data = res.data   
+             info = data.map(u =>
                 <div key={u.customerPostId} className="customer-posts">
                 <div className="cutomer-posts-image-div">
                 <img className="customer-posts-image" src={u.image} alt="image"/>
@@ -36,18 +41,32 @@ export default class CustomerPosts extends React.Component{
                 </div>
                 )
                 this.setState({
-                    Posts : info
+                    Posts : info,
+                    Error : "noError"
                 })
-        })
-        .catch((error)=>{
-          console.log(error)
-        });
+    }
+    else{
+        return(
+            false
+            )
+    }
+})
+    }
+
+    getCustomerPost(){
+        if(this.getConnect() == false){
+            this.setState({Error:"error"})
+        }
+        else{
+            return(this.state.Posts)
+        }
     }
 
     componentDidMount(){
-        this.getCustomersPost();
+        this.getCustomerPost();
     }
     render(){
+        if(this.state.Error =="noError"){
         return(
             <div>
             <Helmet>
@@ -63,5 +82,11 @@ export default class CustomerPosts extends React.Component{
            </div>
             </div>
         )
-    }
+}
+else{
+    return(
+    <ApiError/>
+    )
+}
+}
 }
